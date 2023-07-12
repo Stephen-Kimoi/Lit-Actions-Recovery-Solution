@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "africastalking": "^0.6.2"
+    "africastalking": "^0.6.2",
+    "dotenv": "^16.3.1"
   }
 }
