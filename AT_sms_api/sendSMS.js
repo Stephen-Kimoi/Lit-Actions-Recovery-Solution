@@ -1,24 +1,29 @@
-const AfricasTalking = require('africastalking');
+require("dotenv").config(); 
 
-// TODO: Initialize Africa's Talking
-const africastalking = AfricasTalking({
-    apiKey: '38b0a72d6b24ae8db295c42a70649e279d9659d94c5767e8e589f4b172e4041d', 
-    username: 'sandbox'
-}); 
+// Set your app credentials
+const credentials = {
+    apiKey: process.env.AT_API_KEY,
+    username: 'Trial_1',
+}
 
+// Initialize the SDK
+const AfricasTalking = require('africastalking')(credentials);
 
+// Get the SMS service
+const sms = AfricasTalking.SMS;
 
-module.exports = async function sendSMS() {
-    
-    // TODO: Send message
-    try {
-       const result = await africastalking.SMS.send({
-        to: '+254791496764', 
-        message: 'Hello there. Welcome to Web3', 
-        from: 'Web3Dengen'
-        }); 
-        console.log(result); 
-    } catch (ex) {
-        console.error(ex); 
+module.exports = function sendSMS() {
+    const options = {
+        // Set the numbers you want to send to in international format
+        to: ['+254711308538'],
+        // Set your message
+        message: "Welcome to the next evolution of the web. Web3!!",
+        // Set your shortCode or senderId
+        // from: 'XXYYZZ'
     }
-};
+
+    // That’s it, hit send and we’ll take care of the rest
+    sms.send(options)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+}
