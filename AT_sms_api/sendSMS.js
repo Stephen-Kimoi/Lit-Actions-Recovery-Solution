@@ -12,18 +12,7 @@ const AfricasTalking = require('africastalking')(credentials);
 // Get the SMS service
 const sms = AfricasTalking.SMS;
 
-module.exports = function sendSMS() {
-    const options = {
-        // Set the numbers you want to send to in international format
-        to: ['+254711308538'],
-        // Set your message
-        message: "Welcome to the next evolution of the web. Web3!!",
-        // Set your shortCode or senderId
-        // from: 'XXYYZZ'
-    }
-
-    // That’s it, hit send and we’ll take care of the rest
-    sms.send(options)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
+module.exports = function generateOTP(phoneNumber) {
+    const otp = Math.floor(1000 + Math.random() * 900000).toString(); 
+    const message = `Your verification code is ${otp}. Enter this code in PKP to complete your login.`
 }
